@@ -7,15 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF1A339E251AB73600342B90 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1A339D251AB73600342B90 /* ProjectCell.swift */; };
 		CF1C1658251AB1A700265CD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C1657251AB1A700265CD9 /* AppDelegate.swift */; };
 		CF1C165A251AB1A700265CD9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C1659251AB1A700265CD9 /* SceneDelegate.swift */; };
-		CF1C165C251AB1A700265CD9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C165B251AB1A700265CD9 /* HomeViewController.swift */; };
+		CF1C165C251AB1A700265CD9 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C165B251AB1A700265CD9 /* HomeController.swift */; };
 		CF1C165F251AB1A700265CD9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF1C165D251AB1A700265CD9 /* Main.storyboard */; };
 		CF1C1662251AB1A700265CD9 /* Taskee.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CF1C1660251AB1A700265CD9 /* Taskee.xcdatamodeld */; };
 		CF1C1664251AB1AA00265CD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CF1C1663251AB1AA00265CD9 /* Assets.xcassets */; };
 		CF1C1667251AB1AA00265CD9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF1C1665251AB1AA00265CD9 /* LaunchScreen.storyboard */; };
 		CF1C1672251AB1AA00265CD9 /* TaskeeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C1671251AB1AA00265CD9 /* TaskeeTests.swift */; };
 		CF1C167D251AB1AA00265CD9 /* TaskeeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1C167C251AB1AA00265CD9 /* TaskeeUITests.swift */; };
+		CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */; };
+		CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A56251D557500C4FC1D /* Coordinator.swift */; };
+		CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */; };
 		D12B57F7E35B783BD420E5C4 /* Pods_TaskeeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A543A7E624F72CC68648891F /* Pods_TaskeeTests.framework */; };
 		D9793772057E3AE5F77D7A3B /* Pods_Taskee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4EF9F0AEE83854446584C /* Pods_Taskee.framework */; };
 /* End PBXBuildFile section */
@@ -43,10 +47,11 @@
 		851E5B4B4796AF28E82ECEEB /* Pods-TaskeeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskeeTests.debug.xcconfig"; path = "Target Support Files/Pods-TaskeeTests/Pods-TaskeeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A543A7E624F72CC68648891F /* Pods_TaskeeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskeeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F4EF9F0AEE83854446584C /* Pods_Taskee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Taskee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF1A339D251AB73600342B90 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		CF1C1654251AB1A700265CD9 /* Taskee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taskee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1C1657251AB1A700265CD9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CF1C1659251AB1A700265CD9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CF1C165B251AB1A700265CD9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CF1C165B251AB1A700265CD9 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		CF1C165E251AB1A700265CD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CF1C1661251AB1A700265CD9 /* Taskee.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Taskee.xcdatamodel; sourceTree = "<group>"; };
 		CF1C1663251AB1AA00265CD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +63,9 @@
 		CF1C1678251AB1AA00265CD9 /* TaskeeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskeeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF1C167C251AB1AA00265CD9 /* TaskeeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskeeUITests.swift; sourceTree = "<group>"; };
 		CF1C167E251AB1AA00265CD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		CFFB2A56251D557500C4FC1D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectController.swift; sourceTree = "<group>"; };
 		D7909D42EE814999A526DCC7 /* Pods-TaskeeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskeeTests.release.xcconfig"; path = "Target Support Files/Pods-TaskeeTests/Pods-TaskeeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,8 +141,10 @@
 		CF1C1656251AB1A700265CD9 /* Taskee */ = {
 			isa = PBXGroup;
 			children = (
+				CF1C1668251AB1AA00265CD9 /* Info.plist */,
 				CF1C1657251AB1A700265CD9 /* AppDelegate.swift */,
 				CF1C1659251AB1A700265CD9 /* SceneDelegate.swift */,
+				CFFB2A4D251D54E100C4FC1D /* Coordinators */,
 				CF1C168C251AB51100265CD9 /* Models */,
 				CF1C168D251AB51800265CD9 /* Views */,
 				CF1C168E251AB52000265CD9 /* Controllers */,
@@ -166,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				CF1C1660251AB1A700265CD9 /* Taskee.xcdatamodeld */,
-				CF1C1668251AB1AA00265CD9 /* Info.plist */,
 				CF1C1665251AB1AA00265CD9 /* LaunchScreen.storyboard */,
 				CF1C165D251AB1A700265CD9 /* Main.storyboard */,
 			);
@@ -191,6 +200,7 @@
 		CF1C168D251AB51800265CD9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CF1A339D251AB73600342B90 /* ProjectCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,9 +208,19 @@
 		CF1C168E251AB52000265CD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CF1C165B251AB1A700265CD9 /* HomeViewController.swift */,
+				CF1C165B251AB1A700265CD9 /* HomeController.swift */,
+				CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CFFB2A4D251D54E100C4FC1D /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */,
+				CFFB2A56251D557500C4FC1D /* Coordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,10 +421,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */,
 				CF1C1662251AB1A700265CD9 /* Taskee.xcdatamodeld in Sources */,
-				CF1C165C251AB1A700265CD9 /* HomeViewController.swift in Sources */,
+				CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */,
+				CF1C165C251AB1A700265CD9 /* HomeController.swift in Sources */,
 				CF1C1658251AB1A700265CD9 /* AppDelegate.swift in Sources */,
+				CF1A339E251AB73600342B90 /* ProjectCell.swift in Sources */,
 				CF1C165A251AB1A700265CD9 /* SceneDelegate.swift in Sources */,
+				CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
