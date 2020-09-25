@@ -17,9 +17,19 @@ class NewProjectView: UIView {
     let parentVC: NewProjectController
     
     //MARK: Views
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "New Project"
+        label.font = UIFont(name: Constants.font, size: 30.0)
+        var font = label.font
+        label.font = font?.withWeight(.bold)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
     let titleTextField: UITextField = {
         let textField = UITextField()
-        textField.font = UIFont(name: "Arial", size: 27.0)
+        textField.font = UIFont(name: Constants.font, size: 27.0)
         textField.placeholder = "Project Name"
         textField.textAlignment = .center
         textField.layer.borderWidth = 0
@@ -32,6 +42,13 @@ class NewProjectView: UIView {
         stackView.alignment = .center
         stackView.distribution = .fillEqually
         return stackView
+    }()
+    
+    let saveButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Save", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
     }()
     
     init(frame: CGRect, colors: [UIColor], parentVC: NewProjectController) {
@@ -47,10 +64,17 @@ class NewProjectView: UIView {
     }
     
     fileprivate func setupViews() {
+        self.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(5)
+            make.width.equalToSuperview().multipliedBy(0.9)
+            make.height.equalTo(60)
+        }
         self.addSubview(titleTextField)
         titleTextField.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(15)
+            make.top.equalTo(titleLabel.snp_bottomMargin).offset(15)
             make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(60)
         }
@@ -84,6 +108,12 @@ class NewProjectView: UIView {
         colorsStackView.addArrangedSubview(thirdStackView)
         thirdStackView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
+        }
+        self.addSubview(saveButton)
+        saveButton.snp.makeConstraints { (make) in
+            make.width.equalToSuperview()
+            make.height.equalTo(60)
+            make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }
 }

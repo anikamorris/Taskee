@@ -18,7 +18,7 @@ class AppCoordinator: Coordinator {
     //MARK: Init
     init(window: UIWindow) {
         window.rootViewController = navigationController
-//        setupNavigationController()
+        setupNavigationController()
     }
     
     //MARK: Methods
@@ -33,9 +33,9 @@ class AppCoordinator: Coordinator {
 private extension AppCoordinator {
     func setupNavigationController() {
         self.navigationController.isNavigationBarHidden = false
-        self.navigationController.navigationBar.prefersLargeTitles = true
-        self.navigationController.navigationBar.backgroundColor = .systemBackground
-        self.navigationController.navigationBar.tintColor = .systemBlue 
+        self.navigationController.navigationBar.backgroundColor = .white
+        self.navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController.navigationBar.shadowImage = UIImage()
     }
 }
 
@@ -44,12 +44,10 @@ extension AppCoordinator {
     func goToNewProjectController() {
         let vc = NewProjectController()
         vc.coordinator = self
-//        navigationController.pushViewController(vc, animated: true)
         navigationController.present(vc, animated: true, completion: nil)
     }
     
     func goBackToHomeController() {
-//        navigationController.popViewController(animated: true)
         navigationController.dismiss(animated: true, completion: nil)
     }
 }

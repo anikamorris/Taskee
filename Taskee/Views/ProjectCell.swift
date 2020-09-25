@@ -27,14 +27,14 @@ class ProjectCell: UITableViewCell {
     let projectLabel: UILabel = {
         let label = UILabel()
         label.textColor = .darkGray
-        label.font = UIFont(name: "Futura", size: 20.0)
+        label.font = UIFont(name: Constants.font, size: 20.0)
         return label
     }()
     
     let tasksPendingLabel: UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        label.font = UIFont(name: "Futura", size: 14.0)
+        label.font = UIFont(name: Constants.font, size: 14.0)
         return label
     }()
     

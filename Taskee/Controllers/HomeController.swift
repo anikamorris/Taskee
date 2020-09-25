@@ -16,6 +16,14 @@ class HomeController: UIViewController {
     var projects: [Project] = []
     
     //MARK: Views
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Projects"
+        label.font = UIFont(name: Constants.font, size: 30.0)!.withWeight(.semibold)
+        label.textColor = .black
+        label.textAlignment = .left
+        return label
+    }()
     var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(ProjectCell.self, forCellReuseIdentifier: ProjectCell.identifier)
@@ -26,22 +34,30 @@ class HomeController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.title = "Projects"
+        view.backgroundColor = .white
     }
     
     override func viewWillLayoutSubviews() {
-        setupTableView()
+        setupViews()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newProject))
     }
 
     //MARK: Methods
-    func setupTableView() {
+    func setupViews() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        view.addSubview(titleLabel)
+        titleLabel.snp.makeConstraints { (make) in
+            make.width.equalToSuperview().multipliedBy(0.95)
+            make.height.equalTo(60)
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.centerX.equalToSuperview()
+        }
         view.addSubview(tableView)
         tableView.snp.makeConstraints { (make) in
-            make.top.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
+            make.top.equalTo(titleLabel.snp_bottomMargin).offset(15)
+            make.bottom.left.right.equalTo(view.safeAreaLayoutGuide)
         }
     }
     

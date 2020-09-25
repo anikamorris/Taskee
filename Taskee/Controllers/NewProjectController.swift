@@ -20,10 +20,9 @@ class NewProjectController: UIViewController {
         self.view = NewProjectView.init(frame: view.frame,
                                         colors: colors,
                                         parentVC: self)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveProject))
+        let newProjectView = self.view as! NewProjectView
+        let saveButton = newProjectView.saveButton
+        saveButton.addTarget(self, action: #selector(saveProject), for: .touchUpInside)
     }
     
     @objc func saveProject(_ sender: UIBarButtonItem) {
