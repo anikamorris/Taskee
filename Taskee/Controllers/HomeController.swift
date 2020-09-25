@@ -46,18 +46,18 @@ class HomeController: UIViewController {
     }
     
     @objc func newProject(_ sender: UIBarButtonItem) {
-        print("New Project")
+        coordinator.goToNewProjectController()
     }
 
 }
 
-extension HomeViewController: UITableViewDelegate {
+extension HomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
 }
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        return projects.count
         return 3

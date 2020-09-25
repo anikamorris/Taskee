@@ -20,6 +20,8 @@
 		CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */; };
 		CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A56251D557500C4FC1D /* Coordinator.swift */; };
 		CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */; };
+		CFFB2A67251D5DDA00C4FC1D /* NewProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A66251D5DDA00C4FC1D /* NewProjectView.swift */; };
+		CFFB2A6C251D5F2B00C4FC1D /* ColorStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A6B251D5F2B00C4FC1D /* ColorStackView.swift */; };
 		D12B57F7E35B783BD420E5C4 /* Pods_TaskeeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A543A7E624F72CC68648891F /* Pods_TaskeeTests.framework */; };
 		D9793772057E3AE5F77D7A3B /* Pods_Taskee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F4EF9F0AEE83854446584C /* Pods_Taskee.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +68,8 @@
 		CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CFFB2A56251D557500C4FC1D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectController.swift; sourceTree = "<group>"; };
+		CFFB2A66251D5DDA00C4FC1D /* NewProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectView.swift; sourceTree = "<group>"; };
+		CFFB2A6B251D5F2B00C4FC1D /* ColorStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorStackView.swift; sourceTree = "<group>"; };
 		D7909D42EE814999A526DCC7 /* Pods-TaskeeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskeeTests.release.xcconfig"; path = "Target Support Files/Pods-TaskeeTests/Pods-TaskeeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,6 +205,8 @@
 			isa = PBXGroup;
 			children = (
 				CF1A339D251AB73600342B90 /* ProjectCell.swift */,
+				CFFB2A66251D5DDA00C4FC1D /* NewProjectView.swift */,
+				CFFB2A6B251D5F2B00C4FC1D /* ColorStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -423,8 +429,10 @@
 			files = (
 				CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */,
 				CF1C1662251AB1A700265CD9 /* Taskee.xcdatamodeld in Sources */,
+				CFFB2A67251D5DDA00C4FC1D /* NewProjectView.swift in Sources */,
 				CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */,
 				CF1C165C251AB1A700265CD9 /* HomeController.swift in Sources */,
+				CFFB2A6C251D5F2B00C4FC1D /* ColorStackView.swift in Sources */,
 				CF1C1658251AB1A700265CD9 /* AppDelegate.swift in Sources */,
 				CF1A339E251AB73600342B90 /* ProjectCell.swift in Sources */,
 				CF1C165A251AB1A700265CD9 /* SceneDelegate.swift in Sources */,

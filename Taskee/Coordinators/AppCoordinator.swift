@@ -35,8 +35,21 @@ private extension AppCoordinator {
         self.navigationController.isNavigationBarHidden = false
         self.navigationController.navigationBar.prefersLargeTitles = true
         self.navigationController.navigationBar.backgroundColor = .systemBackground
-        self.navigationController.navigationBar.tintColor = .systemBlue //button color
-        //        navigationController.setStatusBarColor(backgroundColor: kMAINCOLOR)
+        self.navigationController.navigationBar.tintColor = .systemBlue 
     }
 }
 
+//MARK: New Project
+extension AppCoordinator {
+    func goToNewProjectController() {
+        let vc = NewProjectController()
+        vc.coordinator = self
+//        navigationController.pushViewController(vc, animated: true)
+        navigationController.present(vc, animated: true, completion: nil)
+    }
+    
+    func goBackToHomeController() {
+//        navigationController.popViewController(animated: true)
+        navigationController.dismiss(animated: true, completion: nil)
+    }
+}
