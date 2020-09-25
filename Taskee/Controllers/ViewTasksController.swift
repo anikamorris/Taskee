@@ -38,6 +38,12 @@ class ViewTasksController: UIViewController {
         tableView.register(TaskCell.self, forCellReuseIdentifier: TaskCell.identifier)
         return tableView
     }()
+    let barButtonLabel: UILabel = {
+        let label = UILabel()
+        label.text = "New Task"
+        label.textColor = .systemBlue
+        return label
+    }()
     
     //MARK: Init
     init(title: String) {
@@ -54,7 +60,15 @@ class ViewTasksController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func viewWillLayoutSubviews() {
         createViews()
+        let newTaskBarButton = UIBarButtonItem(title: "Add Task",
+                                               style: .plain,
+                                               target: self,
+                                               action: #selector(newTask))
+        self.navigationItem.rightBarButtonItem = newTaskBarButton
     }
     
     //MARK: Methods
@@ -104,6 +118,10 @@ class ViewTasksController: UIViewController {
     @objc func doneButtonTapped(_ sender: UIButton) {
         print("done")
         sender.backgroundColor = #colorLiteral(red: 0.2588235294, green: 1, blue: 0.262745098, alpha: 1)
+    }
+    
+    @objc func newTask(_ sender: UIBarButtonItem) {
+        coordinator.goToNewTaskController()
     }
 }
 

@@ -35,7 +35,6 @@ class NewProjectView: UIView {
         textField.layer.borderWidth = 0
         return textField
     }()
-    
     let colorsStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -43,7 +42,6 @@ class NewProjectView: UIView {
         stackView.distribution = .fillEqually
         return stackView
     }()
-    
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)

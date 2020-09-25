@@ -52,7 +52,7 @@ extension AppCoordinator {
     }
 }
 
-//MARK: View Tasks
+//MARK: Task Flow
 extension AppCoordinator {
 //    func goToViewTasksController(project: Project) {
 //        let vc = ViewTasksController.init(title: project.name)
@@ -65,5 +65,15 @@ extension AppCoordinator {
         let vc = ViewTasksController.init(title: "Project Name")
         vc.coordinator = self
         navigationController.pushViewController(vc, animated: true)
+    }
+    
+    func goToNewTaskController() {
+        let vc = NewTaskController()
+        vc.coordinator = self
+        navigationController.present(vc, animated: true, completion: nil)
+    }
+    
+    func goBackToViewTasksController() {
+        navigationController.dismiss(animated: true, completion: nil)
     }
 }

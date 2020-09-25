@@ -21,6 +21,8 @@
 		CF7B9C05251D9028003C373F /* UIFont+Weight.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C04251D9028003C373F /* UIFont+Weight.swift */; };
 		CF7B9C0D251DBC73003C373F /* ViewTasksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C0C251DBC73003C373F /* ViewTasksController.swift */; };
 		CF7B9C12251DC4E1003C373F /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C11251DC4E1003C373F /* TaskCell.swift */; };
+		CF7B9C17251DD3A7003C373F /* NewTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C16251DD3A7003C373F /* NewTaskController.swift */; };
+		CF7B9C1C251DD3E9003C373F /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */; };
 		CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */; };
 		CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A56251D557500C4FC1D /* Coordinator.swift */; };
 		CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */; };
@@ -73,6 +75,8 @@
 		CF7B9C04251D9028003C373F /* UIFont+Weight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Weight.swift"; sourceTree = "<group>"; };
 		CF7B9C0C251DBC73003C373F /* ViewTasksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTasksController.swift; sourceTree = "<group>"; };
 		CF7B9C11251DC4E1003C373F /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		CF7B9C16251DD3A7003C373F /* NewTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskController.swift; sourceTree = "<group>"; };
+		CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 		CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CFFB2A56251D557500C4FC1D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectController.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 				CFFB2A66251D5DDA00C4FC1D /* NewProjectView.swift */,
 				CFFB2A6B251D5F2B00C4FC1D /* ColorStackView.swift */,
 				CF7B9C11251DC4E1003C373F /* TaskCell.swift */,
+				CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				CF1C165B251AB1A700265CD9 /* HomeController.swift */,
 				CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */,
 				CF7B9C0C251DBC73003C373F /* ViewTasksController.swift */,
+				CF7B9C16251DD3A7003C373F /* NewTaskController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -458,6 +464,8 @@
 				CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */,
 				CF7B9BFC251D740E003C373F /* Constants.swift in Sources */,
 				CF1C1662251AB1A700265CD9 /* Taskee.xcdatamodeld in Sources */,
+				CF7B9C17251DD3A7003C373F /* NewTaskController.swift in Sources */,
+				CF7B9C1C251DD3E9003C373F /* NewTaskView.swift in Sources */,
 				CF7B9C05251D9028003C373F /* UIFont+Weight.swift in Sources */,
 				CFFB2A67251D5DDA00C4FC1D /* NewProjectView.swift in Sources */,
 				CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */,
