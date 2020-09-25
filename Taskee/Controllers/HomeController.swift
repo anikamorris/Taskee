@@ -71,6 +71,12 @@ extension HomeController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let project = projects[indexPath.row]
+//        coordinator.goToViewTasksController(project: project)
+        coordinator.testingViewTasksController()
+    }
 }
 
 extension HomeController: UITableViewDataSource {
