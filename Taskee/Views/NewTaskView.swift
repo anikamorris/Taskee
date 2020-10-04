@@ -19,7 +19,8 @@ class NewTaskView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "New Task"
-        label.font = UIFont(name: Constants.font, size: 30.0)
+        label.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
+        label.textAlignment = .center
         label.textColor = .black
         return label
     }()
@@ -82,7 +83,7 @@ class NewTaskView: UIView {
         self.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
             make.top.equalTo(self.safeAreaLayoutGuide)
-            make.width.equalToSuperview().multipliedBy(0.9)
+            make.width.equalToSuperview()
             make.height.equalTo(60)
         }
         self.addSubview(stackView)

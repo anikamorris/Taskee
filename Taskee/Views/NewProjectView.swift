@@ -20,9 +20,7 @@ class NewProjectView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "New Project"
-        label.font = UIFont(name: Constants.font, size: 30.0)
-        var font = label.font
-        label.font = font?.withWeight(.bold)
+        label.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
         label.textColor = .black
         label.textAlignment = .center
         return label
@@ -42,6 +40,9 @@ class NewProjectView: UIView {
         stackView.distribution = .fillEqually
         return stackView
     }()
+    let firstStackView: ColorStackView!
+    let secondStackView: ColorStackView!
+    let thirdStackView: ColorStackView!
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Save", for: .normal)
@@ -49,16 +50,46 @@ class NewProjectView: UIView {
         return button
     }()
     
+    //MARK: Init
     init(frame: CGRect, colors: [UIColor], parentVC: NewProjectController) {
         self.colors = colors
         self.parentVC = parentVC
+        let firstStackView = ColorStackView.init(frame: .zero,
+                                                color1: colors[0],
+                                                color2: colors[1],
+                                                color3: colors[2])
+        self.firstStackView = firstStackView
+        let secondStackView = ColorStackView.init(frame: .zero,
+                                                color1: colors[3],
+                                                color2: colors[4],
+                                                color3: colors[5])
+        self.secondStackView = secondStackView
+        let thirdStackView = ColorStackView.init(frame: .zero,
+                                                color1: colors[6],
+                                                color2: colors[7],
+                                                color3: colors[8])
+        self.thirdStackView = thirdStackView
         super.init(frame: frame)
         self.backgroundColor = .white
+        setAllButtonTargets()
         setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: Methods
+    fileprivate func setAllButtonTargets() {
+        firstStackView.firstButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        firstStackView.secondButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        firstStackView.thirdButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        secondStackView.firstButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        secondStackView.secondButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        secondStackView.thirdButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        thirdStackView.firstButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        thirdStackView.secondButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
+        thirdStackView.thirdButton.addTarget(self, action: #selector(setColor), for: .touchUpInside)
     }
     
     fileprivate func setupViews() {
@@ -83,18 +114,6 @@ class NewProjectView: UIView {
             make.width.equalToSuperview().multipliedBy(0.8)
             make.height.equalTo(self.frame.width).multipliedBy(0.8)
         }
-        let firstStackView = ColorStackView.init(frame: .zero,
-                                                color1: colors[0],
-                                                color2: colors[1],
-                                                color3: colors[2])
-        let secondStackView = ColorStackView.init(frame: .zero,
-                                                color1: colors[3],
-                                                color2: colors[4],
-                                                color3: colors[5])
-        let thirdStackView = ColorStackView.init(frame: .zero,
-                                                color1: colors[6],
-                                                color2: colors[7],
-                                                color3: colors[8])
         colorsStackView.addArrangedSubview(firstStackView)
         firstStackView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
@@ -113,5 +132,18 @@ class NewProjectView: UIView {
             make.height.equalTo(60)
             make.bottom.equalTo(self.safeAreaLayoutGuide)
         }
+    }
+    
+    @objc func setColor(_ sender: UIButton) {
+        removeAllButtonBorders()
+        sender.layer.borderWidth = 2
+        sender.layer.borderColor = CGColor(gray: 0, alpha: 1)
+        parentVC.color = sender.backgroundColor
+    }
+    
+    fileprivate func removeAllButtonBorders() {
+        firstStackView.removeButtonBorders()
+        secondStackView.removeButtonBorders()
+        thirdStackView.removeButtonBorders()
     }
 }

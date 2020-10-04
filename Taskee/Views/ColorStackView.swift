@@ -18,25 +18,25 @@ class ColorStackView: UIStackView {
     let color3: UIColor
     
     //MARK: Subviews
-    let firstImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 30
-        imageView.clipsToBounds = true
-        return imageView
+    let firstButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        return button
     }()
     
-    let secondImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 30
-        imageView.clipsToBounds = true
-        return imageView
+    let secondButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        return button
     }()
     
-    let thirdImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 30
-        imageView.clipsToBounds = true
-        return imageView
+    let thirdButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        return button
     }()
     
     //MARK: Init
@@ -59,21 +59,27 @@ class ColorStackView: UIStackView {
         self.distribution = .equalSpacing
         self.alignment = .center
         // set image view colors
-        firstImageView.backgroundColor = color1
-        secondImageView.backgroundColor = color2
-        thirdImageView.backgroundColor = color3
+        firstButton.backgroundColor = color1
+        secondButton.backgroundColor = color2
+        thirdButton.backgroundColor = color3
         // image view set up
-        self.addArrangedSubview(firstImageView)
-        firstImageView.snp.makeConstraints { (make) in
+        self.addArrangedSubview(firstButton)
+        firstButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(60)
         }
-        self.addArrangedSubview(secondImageView)
-        secondImageView.snp.makeConstraints { (make) in
+        self.addArrangedSubview(secondButton)
+        secondButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(60)
         }
-        self.addArrangedSubview(thirdImageView)
-        thirdImageView.snp.makeConstraints { (make) in
+        self.addArrangedSubview(thirdButton)
+        thirdButton.snp.makeConstraints { (make) in
             make.height.width.equalTo(60)
         }
+    }
+    
+    func removeButtonBorders() {
+        firstButton.layer.borderWidth = 0
+        secondButton.layer.borderWidth = 0
+        thirdButton.layer.borderWidth = 0
     }
 }

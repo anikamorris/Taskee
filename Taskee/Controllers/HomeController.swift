@@ -8,18 +8,20 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class HomeController: UIViewController {
     
     //MARK: Properties
     var coordinator: AppCoordinator!
-    var projects: [Project] = []
+    var projects = [Project]()
+    var managedContext: NSManagedObjectContext!
     
     //MARK: Views
     let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Projects"
-        label.font = UIFont(name: Constants.font, size: 30.0)!.withWeight(.semibold)
+        label.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -49,7 +51,7 @@ class HomeController: UIViewController {
         tableView.separatorStyle = .none
         view.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().multipliedBy(0.95)
+            make.width.equalToSuperview().multipliedBy(0.9)
             make.height.equalTo(60)
             make.top.equalTo(view.safeAreaLayoutGuide)
             make.centerX.equalToSuperview()
@@ -73,23 +75,20 @@ extension HomeController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let project = projects[indexPath.row]
-//        coordinator.goToViewTasksController(project: project)
-        coordinator.testingViewTasksController()
+        let project = projects[indexPath.row]
+        coordinator.goToViewTasksController(project: project)
     }
 }
 
 extension HomeController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return projects.count
-        return 3
+        return projects.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCell.identifier) as! ProjectCell
-//        let project = projects[indexPath.row]
-//        cell.setTitleAndColor(projectTitle: project.name!, color: project.color!)
-        cell.setTitleAndColor(projectTitle: "Title", color: UIColor.systemPurple)
+        let project = projects[indexPath.row]
+        cell.setTitleAndColor(projectTitle: project.name, color: UIColor(named: project.color)!)
         return cell
     }
     

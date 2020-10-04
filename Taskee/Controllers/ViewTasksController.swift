@@ -14,13 +14,13 @@ class ViewTasksController: UIViewController {
     
     //MARK: Properties
     var coordinator: AppCoordinator!
-//    var project: Project!
+    var project: Project!
     var tasks: [String] = []
     
     //MARK: Views
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: Constants.font, size: 30.0)
+        label.font = UIFont.systemFont(ofSize: 30.0, weight: .bold)
         label.textColor = .black
         label.textAlignment = .left
         return label
@@ -115,11 +115,6 @@ class ViewTasksController: UIViewController {
         }
     }
     
-    @objc func doneButtonTapped(_ sender: UIButton) {
-        print("done")
-        sender.backgroundColor = #colorLiteral(red: 0.2588235294, green: 1, blue: 0.262745098, alpha: 1)
-    }
-    
     @objc func newTask(_ sender: UIBarButtonItem) {
         coordinator.goToNewTaskController()
     }
@@ -136,11 +131,15 @@ extension ViewTasksController: UITableViewDataSource {
         return 3
     }
     
+    @objc func doneButtonTapped(_ sender: UIButton) {
+        sender.backgroundColor = #colorLiteral(red: 0.2588235294, green: 1, blue: 0.262745098, alpha: 1)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
         cell.setTitleAndDueDate(taskName: "Task Name", dueDate: "3 days left")
         cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
+//        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
 }
