@@ -53,9 +53,11 @@ extension NewTaskController: SaveTaskDelegate {
         do {
             try managedContext.save()
             print("should've saved \(task.name) for project \(task.project)")
-            coordinator.goBackToViewTasksController()
         } catch let error as NSError {
             print("Error: \(error), description: \(error.localizedDescription)")
+            self.presentAlert(title: "There was an error saving this task. Please try again.")
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
+        coordinator.goBackToViewTasksController()
     }
 }

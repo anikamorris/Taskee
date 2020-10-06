@@ -63,6 +63,7 @@ class ViewTasksController: UIViewController {
         loadTasksForProject()
         tableView.delegate = self
         tableView.dataSource = self
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView), name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -120,6 +121,11 @@ class ViewTasksController: UIViewController {
     
     @objc func newTask(_ sender: UIBarButtonItem) {
         coordinator.goToNewTaskController(project: project)
+    }
+    
+    @objc func refreshTableView() {
+        loadTasksForProject()
+        tableView.reloadData()
     }
     
     func loadTasksForProject() {
