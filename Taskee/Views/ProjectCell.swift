@@ -79,4 +79,8 @@ class ProjectCell: UITableViewCell {
         projectLabel.text = projectTitle
         colorImage.backgroundColor = color
     }
+    
+    func setTitle(name: String) {
+        projectLabel.text = name
+    }
 }

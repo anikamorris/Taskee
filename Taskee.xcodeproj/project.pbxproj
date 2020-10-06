@@ -28,6 +28,7 @@
 		CF7B9C12251DC4E1003C373F /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C11251DC4E1003C373F /* TaskCell.swift */; };
 		CF7B9C17251DD3A7003C373F /* NewTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C16251DD3A7003C373F /* NewTaskController.swift */; };
 		CF7B9C1C251DD3E9003C373F /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */; };
+		CF862119252C271E00427FB7 /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862118252C271E00427FB7 /* ColorComponents.swift */; };
 		CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */; };
 		CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A56251D557500C4FC1D /* Coordinator.swift */; };
 		CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */; };
@@ -87,6 +88,7 @@
 		CF7B9C11251DC4E1003C373F /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		CF7B9C16251DD3A7003C373F /* NewTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskController.swift; sourceTree = "<group>"; };
 		CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
+		CF862118252C271E00427FB7 /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CFFB2A56251D557500C4FC1D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectController.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				CF5B00802529736B00DFD046 /* Task+CoreDataProperties.swift */,
 				CF5B007D2529736A00DFD046 /* Project+CoreDataClass.swift */,
 				CF5B007E2529736A00DFD046 /* Project+CoreDataProperties.swift */,
+				CF862118252C271E00427FB7 /* ColorComponents.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				CF5B1E2425294A0C006C7D42 /* CoreDataStack.swift in Sources */,
 				CF1C1658251AB1A700265CD9 /* AppDelegate.swift in Sources */,
 				CF1A339E251AB73600342B90 /* ProjectCell.swift in Sources */,
+				CF862119252C271E00427FB7 /* ColorComponents.swift in Sources */,
 				CF1C165A251AB1A700265CD9 /* SceneDelegate.swift in Sources */,
 				CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */,
 			);

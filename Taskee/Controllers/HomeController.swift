@@ -37,16 +37,9 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        let projectSearch: NSFetchRequest<Project> = Project.fetchRequest()
-        do {
-            let projects = try managedContext.fetch(projectSearch)
-            if projects.count > 0 {
-                self.projects = projects
-                print(projects)
-            }
-        } catch let error as NSError {
-            print("Error: \(error) description: \(error.localizedDescription)")
-        }
+        loadProjects()
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView), name: NSNotification.Name(rawValue: "ProjectAdded"), object: nil)
+
     }
     
     override func viewWillLayoutSubviews() {
@@ -76,7 +69,36 @@ class HomeController: UIViewController {
     @objc func newProject(_ sender: UIBarButtonItem) {
         coordinator.goToNewProjectController()
     }
+    
+    @objc func refreshTableView() {
+        loadProjects()
+        tableView.reloadData()
+    }
+    
+    func loadProjects() {
+        let projectSearch: NSFetchRequest<Project> = Project.fetchRequest()
+        do {
+            let projects = try managedContext.fetch(projectSearch)
+            if projects.count > 0 {
+                self.projects = projects.reversed()
+                print(projects)
+            }
+        } catch let error as NSError {
+            print("Error: \(error) description: \(error.localizedDescription)")
+        }
+    }
 
+    func colorFromName(_ name: String) -> UIColor {
+        for color in ColorComponents.allCases {
+            switch color {
+            default:
+                if color.systemName == name {
+                    return color.uiColor
+                }
+            }
+        }
+        return .systemGray
+    }
 }
 
 extension HomeController: UITableViewDelegate {
@@ -98,9 +120,8 @@ extension HomeController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCell.identifier) as! ProjectCell
         let project = projects[indexPath.row]
-        cell.setTitleAndColor(projectTitle: project.name, color: UIColor(named: project.color)!)
+        let color = project.color
+        cell.setTitleAndColor(projectTitle: project.name, color: colorFromName(color))
         return cell
     }
-    
-    
 }
