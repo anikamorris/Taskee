@@ -140,9 +140,11 @@ class ViewTasksController: UIViewController {
         let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
         let predicate = NSPredicate(format: "project.name == %@", project.name)
         taskSearch.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+        taskSearch.sortDescriptors = [sortDescriptor]
         do {
             let result = try managedContext.fetch(taskSearch)
-            self.tasks = result.reversed()
+            self.tasks = result
         } catch let error as NSError {
             print("Error: \(error) description: \(error.localizedDescription)")
         }
@@ -197,7 +199,8 @@ extension ViewTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
         let task = tasks[indexPath.row]
-        cell.setTitleAndDueDate(taskName: task.name, dueDate: "3 days left")
+        let dueDate = task.dueDate.daysUntilDueDate()
+        cell.setTitleAndDueDate(taskName: task.name, dueDate: dueDate)
         cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 //        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
         return cell

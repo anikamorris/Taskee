@@ -30,6 +30,7 @@
 		CF7B9C1C251DD3E9003C373F /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */; };
 		CF862119252C271E00427FB7 /* ColorComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862118252C271E00427FB7 /* ColorComponents.swift */; };
 		CF86211E252C300900427FB7 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF86211D252C300900427FB7 /* UIViewController+Extensions.swift */; };
+		CF862123252C606C00427FB7 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF862122252C606C00427FB7 /* Date+Extension.swift */; };
 		CFFB2A4F251D550500C4FC1D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */; };
 		CFFB2A57251D557500C4FC1D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A56251D557500C4FC1D /* Coordinator.swift */; };
 		CFFB2A5F251D5D6600C4FC1D /* NewProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */; };
@@ -91,6 +92,7 @@
 		CF7B9C1B251DD3E9003C373F /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 		CF862118252C271E00427FB7 /* ColorComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorComponents.swift; sourceTree = "<group>"; };
 		CF86211D252C300900427FB7 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		CF862122252C606C00427FB7 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		CFFB2A4E251D550400C4FC1D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CFFB2A56251D557500C4FC1D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CFFB2A5E251D5D6500C4FC1D /* NewProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				CF7B9C04251D9028003C373F /* UIFont+Weight.swift */,
 				CF86211D252C300900427FB7 /* UIViewController+Extensions.swift */,
+				CF862122252C606C00427FB7 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				CF7B9BFC251D740E003C373F /* Constants.swift in Sources */,
 				CF1C1662251AB1A700265CD9 /* Taskee.xcdatamodeld in Sources */,
 				CF5B00822529736B00DFD046 /* Project+CoreDataProperties.swift in Sources */,
+				CF862123252C606C00427FB7 /* Date+Extension.swift in Sources */,
 				CF5B00842529736B00DFD046 /* Task+CoreDataProperties.swift in Sources */,
 				CF5B00812529736B00DFD046 /* Project+CoreDataClass.swift in Sources */,
 				CF7B9C17251DD3A7003C373F /* NewTaskController.swift in Sources */,
