@@ -78,6 +78,10 @@ class ViewTasksController: UIViewController {
         self.navigationItem.rightBarButtonItem = newTaskBarButton
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        refreshTableView()
+    }
+    
     //MARK: Methods
     fileprivate func createViews() {
         view.backgroundColor = .white
@@ -165,6 +169,7 @@ class ViewTasksController: UIViewController {
             let task = completedTasks[sender.tag]
             task.isDone = false
             saveContext()
+            todoDoneControl.selectedSegmentIndex = 0
         }
         refreshTableView()
     }
@@ -187,6 +192,24 @@ extension ViewTasksController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let task = incompleteTasks[indexPath.row]
         coordinator.goToNewTaskController(project: project, task: task)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if todoDoneControl.selectedSegmentIndex == 0 {
+                let task = incompleteTasks[indexPath.row]
+                managedContext.delete(task)
+            } else {
+                let task = completedTasks[indexPath.row]
+                managedContext.delete(task)
+            }
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            refreshTableView()
+        }
     }
 }
 

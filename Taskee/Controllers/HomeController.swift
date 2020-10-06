@@ -47,6 +47,10 @@ class HomeController: UIViewController {
         setupViews()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newProject))
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshTableView()
+    }
 
     //MARK: Methods
     func setupViews() {
