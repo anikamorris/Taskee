@@ -159,6 +159,7 @@ extension ViewTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
         let task = tasks[indexPath.row]
+        print("task is done: \(task.isDone)")
         cell.setTitleAndDueDate(taskName: task.name, dueDate: "3 days left")
         cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 //        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)

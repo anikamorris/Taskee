@@ -50,9 +50,9 @@ extension NewTaskController: SaveTaskDelegate {
         task.name = title
         task.dueDate = date
         task.project = project
+        task.isDone = false
         do {
             try managedContext.save()
-            print("should've saved \(task.name) for project \(task.project)")
         } catch let error as NSError {
             print("Error: \(error), description: \(error.localizedDescription)")
             self.presentAlert(title: "There was an error saving this task. Please try again.")
