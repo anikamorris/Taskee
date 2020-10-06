@@ -31,12 +31,23 @@ class TaskCell: UITableViewCell {
     }()
     
     let doneButton: UIButton = {
-        let button = UIButton()
-        button.layer.borderWidth = 2
-        button.layer.borderColor = CGColor.init(red: 66, green: 255, blue: 27, alpha: 1)
-        button.layer.cornerRadius = 8
-        button.clipsToBounds = true
-        return button
+        if #available(iOS 14.0, *) {
+            let button = UIButton(type: .roundedRect, primaryAction: UIAction(handler: { _ in
+                print("done button tapped")
+            }))
+            button.layer.borderWidth = 2
+            button.layer.borderColor = CGColor.init(red: 66, green: 255, blue: 27, alpha: 1)
+            button.layer.cornerRadius = 8
+            button.clipsToBounds = true
+            return button
+        } else {
+            let button = UIButton()
+            button.layer.borderWidth = 2
+            button.layer.borderColor = CGColor.init(red: 66, green: 255, blue: 27, alpha: 1)
+            button.layer.cornerRadius = 8
+            button.clipsToBounds = true
+            return button
+        }
     }()
     
     let labelStackView: UIStackView = {

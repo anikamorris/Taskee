@@ -60,7 +60,7 @@ class ViewTasksController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSelectedIndexTintColor()
+        setTintColor(element: todoDoneControl)
         loadTasksForProject()
         tableView.delegate = self
         tableView.dataSource = self
@@ -99,10 +99,15 @@ class ViewTasksController: UIViewController {
         }
     }
     
-    func setSelectedIndexTintColor() {
+    func setTintColor(element: NSObject) {
         let colorName = project.color
         let color = ColorComponents(systemName: colorName)
-        todoDoneControl.selectedSegmentTintColor = color.uiColor
+        if type(of: element) == UISegmentedControl.self {
+            todoDoneControl.selectedSegmentTintColor = color.uiColor
+        } else if type(of: element) == UIButton.self {
+            let button = element as! UIButton
+            button.backgroundColor = color.uiColor
+        }
     }
     
     @objc func selectedSegmentDidChange(_ sender: UISegmentedControl) {
@@ -121,14 +126,14 @@ class ViewTasksController: UIViewController {
             }
         } else {
             for cell in cells {
-                cell.doneButton.backgroundColor = #colorLiteral(red: 0.2588235294, green: 1, blue: 0.262745098, alpha: 1)
+                setTintColor(element: cell.doneButton)
                 cell.dueDateLabel.removeFromSuperview()
             }
         }
     }
     
     @objc func newTask(_ sender: UIBarButtonItem) {
-        coordinator.goToNewTaskController(project: project)
+        coordinator.goToNewTaskController(project: project, task: nil)
     }
     
     @objc func refreshTableView() {
@@ -184,6 +189,11 @@ class ViewTasksController: UIViewController {
 extension ViewTasksController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = tasks[indexPath.row]
+        coordinator.goToNewTaskController(project: project, task: task)
     }
 }
 

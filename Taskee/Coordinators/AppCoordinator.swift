@@ -64,10 +64,11 @@ extension AppCoordinator {
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func goToNewTaskController(project: Project) {
+    func goToNewTaskController(project: Project, task: Task?) {
         let vc = NewTaskController()
         vc.coordinator = self
         vc.project = project
+        vc.task = task
         vc.managedContext = self.managedContext
         navigationController.present(vc, animated: true, completion: nil)
     }
