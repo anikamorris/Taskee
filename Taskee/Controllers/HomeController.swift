@@ -110,6 +110,19 @@ extension HomeController: UITableViewDelegate {
         let project = projects[indexPath.row]
         coordinator.goToViewTasksController(project: project)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let project = projects[indexPath.row]
+            managedContext.delete(project)
+            do {
+                try managedContext.save()
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            refreshTableView()
+        }
+    }
 }
 
 extension HomeController: UITableViewDataSource {
