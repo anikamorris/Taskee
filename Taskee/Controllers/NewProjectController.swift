@@ -41,7 +41,15 @@ class NewProjectController: UIViewController {
 }
 
 extension NewProjectController: SaveProjectDelegate {
-    func saveProject(title: String, color: UIColor) {
+    func saveProject(title: String, color: UIColor?) {
+        if title == "" {
+            self.presentAlert(title: "Project must have a name.")
+            return
+        }
+        guard let color = color else {
+            self.presentAlert(title: "Project must have a color.")
+            return
+        }
         let greenComponent = color.cgColor.components![1]
         let colorName = colorNameFromUIColor(greenComponent: greenComponent)
         print(colorName)

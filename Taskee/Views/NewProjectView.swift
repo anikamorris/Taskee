@@ -11,7 +11,7 @@ import UIKit
 import SnapKit
 
 protocol SaveProjectDelegate {
-    func saveProject(title: String, color: UIColor)
+    func saveProject(title: String, color: UIColor?)
 }
 
 class NewProjectView: UIView {
@@ -147,8 +147,9 @@ class NewProjectView: UIView {
     }
     
     @objc func saveButtonTapped(_ sender: UIButton) {
-        guard let title = titleTextField.text else { return }
-        guard let color = color else { return }
+        guard let title = titleTextField.text else {
+            return
+        }
         saveProjectDelegate.saveProject(title: title, color: color)
     }
     

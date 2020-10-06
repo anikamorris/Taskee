@@ -81,7 +81,6 @@ class HomeController: UIViewController {
             let projects = try managedContext.fetch(projectSearch)
             if projects.count > 0 {
                 self.projects = projects.reversed()
-                print(projects)
             }
         } catch let error as NSError {
             print("Error: \(error) description: \(error.localizedDescription)")
