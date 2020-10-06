@@ -10,10 +10,14 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol SaveTaskDelegate {
+    func saveTask(title: String, dueDate: String)
+}
+
 class NewTaskView: UIView {
     
     //MARK: Properties
-    let parentVC: NewTaskController
+    var saveTaskDelegate: SaveTaskDelegate!
     
     //MARK: Views
     let titleLabel: UILabel = {
@@ -68,7 +72,6 @@ class NewTaskView: UIView {
     //MARK: Init
     init(frame: CGRect, title: String, parentVC: NewTaskController) {
         titleLabel.text = title
-        self.parentVC = parentVC
         super.init(frame: frame)
         createViews()
     }
@@ -105,6 +108,9 @@ class NewTaskView: UIView {
     }
     
     @objc func saveButtonTapped(_ sender: UIButton) {
-        parentVC.coordinator.goBackToViewTasksController()
+        guard let title = taskNameTextField.text, let date = dueDateTextField.text else {
+            return
+        }
+        saveTaskDelegate.saveTask(title: title, dueDate: date)
     }
 }

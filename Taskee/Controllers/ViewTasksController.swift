@@ -9,13 +9,15 @@
 import Foundation
 import UIKit
 import SnapKit
+import CoreData
 
 class ViewTasksController: UIViewController {
     
     //MARK: Properties
     var coordinator: AppCoordinator!
     var project: Project!
-    var tasks: [String] = []
+    var managedContext: NSManagedObjectContext!
+    var tasks: [Task]!
     
     //MARK: Views
     let titleLabel: UILabel = {
@@ -28,7 +30,7 @@ class ViewTasksController: UIViewController {
     let todoDoneControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["TODO", "DONE"])
         control.selectedSegmentIndex = 0
-        control.tintColor = #colorLiteral(red: 0.5205061295, green: 1, blue: 0.2725500257, alpha: 1)
+        control.selectedSegmentTintColor = .green
         control.backgroundColor = .white
         control.addTarget(self, action: #selector(selectedSegmentDidChange), for: .valueChanged)
         return control
@@ -58,6 +60,7 @@ class ViewTasksController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadTasksForProject()
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -116,7 +119,19 @@ class ViewTasksController: UIViewController {
     }
     
     @objc func newTask(_ sender: UIBarButtonItem) {
-        coordinator.goToNewTaskController()
+        coordinator.goToNewTaskController(project: project)
+    }
+    
+    func loadTasksForProject() {
+        let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
+        let predicate = NSPredicate(format: "project.name == %@", project.name)
+        taskSearch.predicate = predicate
+        do {
+            let result = try managedContext.fetch(taskSearch)
+            self.tasks = result
+        } catch let error as NSError {
+            print("Error: \(error) description: \(error.localizedDescription)")
+        }
     }
 }
 
@@ -128,7 +143,7 @@ extension ViewTasksController: UITableViewDelegate {
 
 extension ViewTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return tasks.count
     }
     
     @objc func doneButtonTapped(_ sender: UIButton) {
@@ -137,7 +152,8 @@ extension ViewTasksController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
-        cell.setTitleAndDueDate(taskName: "Task Name", dueDate: "3 days left")
+        let task = tasks[indexPath.row]
+        cell.setTitleAndDueDate(taskName: task.name, dueDate: "3 days left")
         cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 //        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
         return cell

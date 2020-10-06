@@ -37,8 +37,6 @@ private extension AppCoordinator {
     func setupNavigationController() {
         self.navigationController.isNavigationBarHidden = false
         self.navigationController.navigationBar.backgroundColor = .white
-//        self.navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-//        self.navigationController.navigationBar.shadowImage = UIImage()
     }
 }
 
@@ -62,18 +60,15 @@ extension AppCoordinator {
         let vc = ViewTasksController.init(title: project.name)
         vc.coordinator = self
         vc.project = project
+        vc.managedContext = self.managedContext
         navigationController.pushViewController(vc, animated: true)
     }
     
-    func testingViewTasksController() {
-        let vc = ViewTasksController.init(title: "Project Name")
-        vc.coordinator = self
-        navigationController.pushViewController(vc, animated: true)
-    }
-    
-    func goToNewTaskController() {
+    func goToNewTaskController(project: Project) {
         let vc = NewTaskController()
         vc.coordinator = self
+        vc.project = project
+        vc.managedContext = self.managedContext
         navigationController.present(vc, animated: true, completion: nil)
     }
     
