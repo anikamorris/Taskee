@@ -122,9 +122,19 @@ extension HomeController: UITableViewDataSource {
         let project = projects[indexPath.row]
         let color = ColorComponents.init(systemName: project.color)
         let colorFromName = color.uiColor
-        let numTasks = project.tasks?.count ?? 0
+        // inefficient but i'm not tryna rewrite loadIncompleteTasks rn
+        let allTasks = project.tasks!
+        var numPendingTasks = 0
+        if allTasks.count > 0 {
+            for i in 0...allTasks.count-1 {
+                let task = allTasks[i] as! Task
+                if task.isDone == false {
+                    numPendingTasks += 1
+                }
+            }
+        }
         cell.setTitleAndTasksAndColor(projectTitle: project.name,
-                                                    tasks: numTasks,
+                                                    tasks: numPendingTasks,
                                                     color: colorFromName)
         return cell
     }

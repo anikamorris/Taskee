@@ -153,6 +153,30 @@ class ViewTasksController: UIViewController {
             print("Error: \(error) description: \(error.localizedDescription)")
         }
     }
+    
+    @objc func doneButtonTapped(_ sender: UIButton) {
+        if todoDoneControl.selectedSegmentIndex == 0 {
+            setTintColor(element: sender)
+            let task = incompleteTasks[sender.tag]
+            task.isDone = true
+            saveContext()
+            todoDoneControl.selectedSegmentIndex = 1
+        } else {
+            let task = completedTasks[sender.tag]
+            task.isDone = false
+            saveContext()
+        }
+        refreshTableView()
+    }
+    
+    func saveContext() {
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Error: \(error), description: \(error.localizedDescription)")
+            self.presentAlert(title: "There was an error saving this task. Please try again.")
+        }
+    }
 }
 
 extension ViewTasksController: UITableViewDelegate {
@@ -175,16 +199,13 @@ extension ViewTasksController: UITableViewDataSource {
         }
     }
     
-    @objc func doneButtonTapped(_ sender: UIButton) {
-        setTintColor(element: sender)
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
         if todoDoneControl.selectedSegmentIndex == 0 {
             let task = incompleteTasks[indexPath.row]
             let dueDate = task.dueDate.daysUntilDueDate()
             cell.setTitleAndDueDate(taskName: task.name, dueDate: dueDate)
+            cell.labelStackView.addArrangedSubview(cell.dueDateLabel)
             cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         } else {
             let task = completedTasks[indexPath.row]
@@ -192,6 +213,7 @@ extension ViewTasksController: UITableViewDataSource {
             cell.setTitle(taskName: task.name)
             setTintColor(element: cell.doneButton)
         }
+        cell.doneButton.tag = indexPath.row
         cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
