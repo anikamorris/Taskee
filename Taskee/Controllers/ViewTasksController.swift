@@ -60,6 +60,7 @@ class ViewTasksController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSelectedIndexTintColor()
         loadTasksForProject()
         tableView.delegate = self
         tableView.dataSource = self
@@ -98,17 +99,24 @@ class ViewTasksController: UIViewController {
         }
     }
     
+    func setSelectedIndexTintColor() {
+        let colorName = project.color
+        let color = ColorComponents(systemName: colorName)
+        todoDoneControl.selectedSegmentTintColor = color.uiColor
+    }
+    
     @objc func selectedSegmentDidChange(_ sender: UISegmentedControl) {
         let cells = tableView.visibleCells as! [TaskCell]
         if todoDoneControl.selectedSegmentIndex == 0 {
-            for i in 0...cells.count-1 {
-                let cell = cells[i]
-//                let project = projects[i]
-                cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                let labelStackView = cell.labelStackView
-                if labelStackView.subviews.count == 1 {
-                    cell.setDueDate(dueDate: "3 days left")
-                    labelStackView.addArrangedSubview(cell.dueDateLabel)
+            if cells.count > 0 {
+                for i in 0...cells.count-1 {
+                    let cell = cells[i]
+                    cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+                    let labelStackView = cell.labelStackView
+                    if labelStackView.subviews.count == 1 {
+                        cell.setDueDate(dueDate: "3 days left")
+                        labelStackView.addArrangedSubview(cell.dueDateLabel)
+                    }
                 }
             }
         } else {
@@ -134,7 +142,37 @@ class ViewTasksController: UIViewController {
         taskSearch.predicate = predicate
         do {
             let result = try managedContext.fetch(taskSearch)
-            self.tasks = result
+            self.tasks = result.reversed()
+        } catch let error as NSError {
+            print("Error: \(error) description: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadIncompleteTasks() {
+        let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
+        let predicate = NSPredicate(format: "project.name == %@ AND isDone == false", project.name)
+        taskSearch.predicate = predicate
+        do {
+            print("all incomplete tasks")
+            let result = try managedContext.fetch(taskSearch)
+            for task in result {
+                print(task.name)
+            }
+        } catch let error as NSError {
+            print("Error: \(error) description: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadCompletedTasks() {
+        let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
+        let predicate = NSPredicate(format: "project.name == %@ AND isDone == true", project.name)
+        taskSearch.predicate = predicate
+        do {
+            print("all completed tasks")
+            let result = try managedContext.fetch(taskSearch)
+            for task in result {
+                print(task.name)
+            }
         } catch let error as NSError {
             print("Error: \(error) description: \(error.localizedDescription)")
         }
@@ -159,7 +197,6 @@ extension ViewTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
         let task = tasks[indexPath.row]
-        print("task is done: \(task.isDone)")
         cell.setTitleAndDueDate(taskName: task.name, dueDate: "3 days left")
         cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
 //        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)

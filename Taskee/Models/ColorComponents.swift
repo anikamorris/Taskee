@@ -12,6 +12,56 @@ import UIKit
 enum ColorComponents: CaseIterable {
     case red, pink, orange, teal, green, yellow, purple, blue, indigo
     
+    init(greenComponent: CGFloat) {
+        switch greenComponent {
+        case 0.23137254901960785:
+            self = .red
+        case 0.17647058823529413:
+            self = .pink
+        case 0.5843137254901961:
+            self = .orange
+        case 0.7843137254901961:
+            self = .teal
+        case 0.7803921568627451:
+            self = .green
+        case 0.8:
+            self = .yellow
+        case 0.3215686274509804:
+            self = .purple
+        case 0.47843137254901963:
+            self = .blue
+        case 0.33725490196078434:
+            self = .indigo
+        default:
+            self = .blue
+        }
+    }
+    
+    init(systemName: String) {
+        switch systemName {
+        case "systemRed":
+            self = .red
+        case "systemPink":
+            self = .pink
+        case "systemOrange":
+            self = .orange
+        case "systemTeal":
+            self = .teal
+        case "systemGreen":
+            self = .green
+        case "systemYellow":
+            self = .yellow
+        case "systemPurple":
+            self = .purple
+        case "systemBlue":
+            self = .blue
+        case "systemIndigo":
+            self = .indigo
+        default:
+            self = .blue
+        }
+    }
+    
     var systemName: String {
         switch self {
         case .red:

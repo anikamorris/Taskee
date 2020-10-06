@@ -39,6 +39,7 @@ class HomeController: UIViewController {
         view.backgroundColor = .white
         loadProjects()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView), name: NSNotification.Name(rawValue: "ProjectAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView), name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
 
     }
     
@@ -119,8 +120,12 @@ extension HomeController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectCell.identifier) as! ProjectCell
         let project = projects[indexPath.row]
-        let color = project.color
-        cell.setTitleAndColor(projectTitle: project.name, color: colorFromName(color))
+        let color = ColorComponents.init(systemName: project.color)
+        let colorFromName = color.uiColor
+        let numTasks = project.tasks?.count ?? 0
+        cell.setTitleAndTasksAndColor(projectTitle: project.name,
+                                                    tasks: numTasks,
+                                                    color: colorFromName)
         return cell
     }
 }

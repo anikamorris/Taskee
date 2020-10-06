@@ -36,6 +36,8 @@ class NewProjectView: UIView {
         textField.placeholder = "Project Name"
         textField.textAlignment = .center
         textField.layer.borderWidth = 0
+        textField.textColor = .black
+        textField.returnKeyType = .done
         return textField
     }()
     let colorsStackView: UIStackView = {

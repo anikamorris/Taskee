@@ -16,6 +16,7 @@ class NewProjectController: UIViewController {
     var coordinator: AppCoordinator!
     var managedContext: NSManagedObjectContext!
     let colors: [UIColor] = [.systemRed, .systemPink, .systemOrange, .systemTeal, .systemGreen, .systemYellow, .systemPurple, .systemBlue, .systemIndigo]
+    var titleTextField: UITextField!
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -24,20 +25,12 @@ class NewProjectController: UIViewController {
                                         colors: colors)
         let newProjectView = self.view as! NewProjectView
         newProjectView.saveProjectDelegate = self
+        self.titleTextField = newProjectView.titleTextField
+        titleTextField.delegate = self
     }
     
     //MARK: Methods
-    func colorNameFromUIColor(greenComponent: CGFloat) -> String {
-        for color in ColorComponents.allCases {
-            switch color {
-            default:
-                if color.greenComponent == greenComponent {
-                    return color.systemName
-                }
-            }
-        }
-        return ""
-    }
+    
 }
 
 extension NewProjectController: SaveProjectDelegate {
@@ -51,18 +44,27 @@ extension NewProjectController: SaveProjectDelegate {
             return
         }
         let greenComponent = color.cgColor.components![1]
-        let colorName = colorNameFromUIColor(greenComponent: greenComponent)
-        print(colorName)
+        let colorComponent = ColorComponents.init(greenComponent: greenComponent)
+        let colorName = colorComponent.systemName
         let project = Project(context: managedContext)
         project.name = title
         project.color = colorName
         do {
             try managedContext.save()
-            print("should've saved \(project.name) with color \(project.color)")
+            print("saved \(project.name) with color \(project.color)")
         } catch let error as NSError {
             print("Error: \(error), description: \(error.userInfo)")
         }
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ProjectAdded"), object: nil)
         coordinator.goBackToHomeController()
+    }
+}
+
+extension NewProjectController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            textField.resignFirstResponder()
+        }
+        return true
     }
 }

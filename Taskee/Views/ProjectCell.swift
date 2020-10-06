@@ -64,23 +64,41 @@ class ProjectCell: UITableViewCell {
         }
         container.addSubview(colorImage)
         colorImage.snp.makeConstraints { (make) in
-            make.centerY.equalToSuperview()
             make.left.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(20)
             make.height.width.equalTo(30)
+        }
+        container.addSubview(tasksPendingLabel)
+        tasksPendingLabel.snp.makeConstraints { (make) in
+            make.height.equalTo(15)
+            make.left.equalTo(colorImage.snp_rightMargin).offset(15)
+            make.right.bottom.equalToSuperview().offset(-5)
         }
         container.addSubview(projectLabel)
         projectLabel.snp.makeConstraints { (make) in
-            make.top.bottom.right.equalToSuperview()
+            make.top.right.equalToSuperview()
             make.left.equalTo(colorImage.snp_rightMargin).offset(15)
+            make.bottom.equalTo(tasksPendingLabel.snp_topMargin)
         }
     }
     
-    func setTitleAndColor(projectTitle: String, color: UIColor) {
+    func setTitleAndTasksAndColor(projectTitle: String, tasks: Int, color: UIColor) {
         projectLabel.text = projectTitle
         colorImage.backgroundColor = color
+        setTasks(tasks: tasks)
     }
     
     func setTitle(name: String) {
         projectLabel.text = name
+    }
+    
+    func setTasks(tasks: Int) {
+        if tasks == 0 {
+            tasksPendingLabel.text = "No tasks pending"
+        } else if tasks == 1 {
+            tasksPendingLabel.text = "\(tasks) task pending"
+        } else {
+            tasksPendingLabel.text = "\(tasks) tasks pending"
+        }
     }
 }
