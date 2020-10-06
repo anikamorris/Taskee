@@ -30,7 +30,14 @@ class NewProjectController: UIViewController {
     }
     
     //MARK: Methods
-    
+    func saveContext() {
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Error: \(error), description: \(error.localizedDescription)")
+            self.presentAlert(title: "There was an error saving this project. Please try again.")
+        }
+    }
 }
 
 extension NewProjectController: SaveProjectDelegate {
@@ -49,12 +56,7 @@ extension NewProjectController: SaveProjectDelegate {
         let project = Project(context: managedContext)
         project.name = title
         project.color = colorName
-        do {
-            try managedContext.save()
-            print("saved \(project.name) with color \(project.color)")
-        } catch let error as NSError {
-            print("Error: \(error), description: \(error.userInfo)")
-        }
+        saveContext()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ProjectAdded"), object: nil)
         coordinator.goBackToHomeController()
     }

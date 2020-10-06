@@ -49,6 +49,15 @@ class NewTaskController: UIViewController {
         view.dueDateTextField.textColor = color
         view.taskNameTextField.textColor = color
     }
+    
+    func saveContext() {
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Error: \(error), description: \(error.localizedDescription)")
+            self.presentAlert(title: "There was an error saving this task. Please try again.")
+        }
+    }
 }
 
 extension NewTaskController: SaveTaskDelegate {
@@ -73,12 +82,7 @@ extension NewTaskController: SaveTaskDelegate {
             task.project = project
             task.isDone = false
         }
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Error: \(error), description: \(error.localizedDescription)")
-            self.presentAlert(title: "There was an error saving this task. Please try again.")
-        }
+        saveContext()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
         coordinator.goBackToViewTasksController()
     }

@@ -163,14 +163,13 @@ class ViewTasksController: UIViewController {
             setTintColor(element: sender)
             let task = incompleteTasks[sender.tag]
             task.isDone = true
-            saveContext()
             todoDoneControl.selectedSegmentIndex = 1
         } else {
             let task = completedTasks[sender.tag]
             task.isDone = false
-            saveContext()
             todoDoneControl.selectedSegmentIndex = 0
         }
+        saveContext()
         refreshTableView()
     }
     
