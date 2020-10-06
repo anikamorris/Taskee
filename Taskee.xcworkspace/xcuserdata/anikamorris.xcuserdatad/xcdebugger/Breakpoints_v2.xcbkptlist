@@ -14,8 +14,8 @@
             filePath = "Taskee/Controllers/ViewTasksController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Taskee/Controllers/ViewTasksController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
             landmarkName = "doneButtonTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -66,70 +66,6 @@
             endingLineNumber = "64"
             landmarkName = "NewProjectController"
             landmarkType = "21">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3D2C7C35-4955-41E1-B777-C3F8AC189B99"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Taskee/Views/TaskCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "doneButton"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "DD25B392-1ABA-4F3B-8B59-CF37B0BF2B2F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Taskee/Views/TaskCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
-            landmarkName = "doneButton"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "DD25B392-1ABA-4F3B-8B59-CF37B0BF2B2F - db353d64239d2a85"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; __C.UIButton in variable initialization expression of Taskee.TaskCell.doneButton : __C.UIButton"
-                  moduleName = "Taskee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anikamorris/Documents/senior-year/mob2.1/Taskee/Taskee/Views/TaskCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "35"
-                  endingLineNumber = "35"
-                  offsetFromSymbolStart = "99">
-               </Location>
-               <Location
-                  uuid = "DD25B392-1ABA-4F3B-8B59-CF37B0BF2B2F - 26ec4bd8e6e6db2a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__C.UIAction) -&gt; () in closure #1 () -&gt; __C.UIButton in variable initialization expression of Taskee.TaskCell.doneButton : __C.UIButton"
-                  moduleName = "Taskee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/anikamorris/Documents/senior-year/mob2.1/Taskee/Taskee/Views/TaskCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "8">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

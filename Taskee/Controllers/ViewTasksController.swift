@@ -17,7 +17,8 @@ class ViewTasksController: UIViewController {
     var coordinator: AppCoordinator!
     var project: Project!
     var managedContext: NSManagedObjectContext!
-    var tasks: [Task]!
+    var completedTasks: [Task]!
+    var incompleteTasks: [Task]!
     
     //MARK: Views
     let titleLabel: UILabel = {
@@ -61,7 +62,8 @@ class ViewTasksController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTintColor(element: todoDoneControl)
-        loadTasksForProject()
+        loadIncompleteTasks()
+        loadCompletedTasks()
         tableView.delegate = self
         tableView.dataSource = self
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTableView), name: NSNotification.Name(rawValue: "TaskAdded"), object: nil)
@@ -111,25 +113,7 @@ class ViewTasksController: UIViewController {
     }
     
     @objc func selectedSegmentDidChange(_ sender: UISegmentedControl) {
-        let cells = tableView.visibleCells as! [TaskCell]
-        if todoDoneControl.selectedSegmentIndex == 0 {
-            if cells.count > 0 {
-                for i in 0...cells.count-1 {
-                    let cell = cells[i]
-                    cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-                    let labelStackView = cell.labelStackView
-                    if labelStackView.subviews.count == 1 {
-                        cell.setDueDate(dueDate: "3 days left")
-                        labelStackView.addArrangedSubview(cell.dueDateLabel)
-                    }
-                }
-            }
-        } else {
-            for cell in cells {
-                setTintColor(element: cell.doneButton)
-                cell.dueDateLabel.removeFromSuperview()
-            }
-        }
+        tableView.reloadData()
     }
     
     @objc func newTask(_ sender: UIBarButtonItem) {
@@ -137,34 +121,20 @@ class ViewTasksController: UIViewController {
     }
     
     @objc func refreshTableView() {
-        loadTasksForProject()
+        loadIncompleteTasks()
+        loadCompletedTasks()
         tableView.reloadData()
-    }
-    
-    func loadTasksForProject() {
-        let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
-        let predicate = NSPredicate(format: "project.name == %@", project.name)
-        taskSearch.predicate = predicate
-        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
-        taskSearch.sortDescriptors = [sortDescriptor]
-        do {
-            let result = try managedContext.fetch(taskSearch)
-            self.tasks = result
-        } catch let error as NSError {
-            print("Error: \(error) description: \(error.localizedDescription)")
-        }
     }
     
     func loadIncompleteTasks() {
         let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
         let predicate = NSPredicate(format: "project.name == %@ AND isDone == false", project.name)
         taskSearch.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+        taskSearch.sortDescriptors = [sortDescriptor]
         do {
-            print("all incomplete tasks")
             let result = try managedContext.fetch(taskSearch)
-            for task in result {
-                print(task.name)
-            }
+            incompleteTasks = result
         } catch let error as NSError {
             print("Error: \(error) description: \(error.localizedDescription)")
         }
@@ -174,12 +144,11 @@ class ViewTasksController: UIViewController {
         let taskSearch: NSFetchRequest<Task> = Task.fetchRequest()
         let predicate = NSPredicate(format: "project.name == %@ AND isDone == true", project.name)
         taskSearch.predicate = predicate
+        let sortDescriptor = NSSortDescriptor(key: "dueDate", ascending: true)
+        taskSearch.sortDescriptors = [sortDescriptor]
         do {
-            print("all completed tasks")
             let result = try managedContext.fetch(taskSearch)
-            for task in result {
-                print(task.name)
-            }
+            completedTasks = result
         } catch let error as NSError {
             print("Error: \(error) description: \(error.localizedDescription)")
         }
@@ -192,27 +161,38 @@ extension ViewTasksController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let task = tasks[indexPath.row]
+        let task = incompleteTasks[indexPath.row]
         coordinator.goToNewTaskController(project: project, task: task)
     }
 }
 
 extension ViewTasksController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        if todoDoneControl.selectedSegmentIndex == 0 {
+            return incompleteTasks.count
+        } else {
+            return completedTasks.count
+        }
     }
     
     @objc func doneButtonTapped(_ sender: UIButton) {
-        sender.backgroundColor = #colorLiteral(red: 0.2588235294, green: 1, blue: 0.262745098, alpha: 1)
+        setTintColor(element: sender)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TaskCell.identifier) as! TaskCell
-        let task = tasks[indexPath.row]
-        let dueDate = task.dueDate.daysUntilDueDate()
-        cell.setTitleAndDueDate(taskName: task.name, dueDate: dueDate)
-        cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
-//        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
+        if todoDoneControl.selectedSegmentIndex == 0 {
+            let task = incompleteTasks[indexPath.row]
+            let dueDate = task.dueDate.daysUntilDueDate()
+            cell.setTitleAndDueDate(taskName: task.name, dueDate: dueDate)
+            cell.doneButton.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        } else {
+            let task = completedTasks[indexPath.row]
+            cell.dueDateLabel.removeFromSuperview()
+            cell.setTitle(taskName: task.name)
+            setTintColor(element: cell.doneButton)
+        }
+        cell.doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
 }

@@ -30,10 +30,7 @@ class NewTaskController: UIViewController {
             self.view = NewTaskView.init(frame: .zero, title: "New Task", parentVC: self)
         }
         let newTaskView = view as! NewTaskView
-        let colorComponent = ColorComponents.init(systemName: project.color)
-        let color = colorComponent.uiColor
-        newTaskView.dueDateTextField.textColor = color
-        newTaskView.taskNameTextField.textColor = color
+        setTaskViewTextColors(view: newTaskView)
         newTaskView.saveTaskDelegate = self
     }
     
@@ -44,6 +41,13 @@ class NewTaskController: UIViewController {
         formatter.dateFormat = "MM/dd/yyyy"
         let dueDate = formatter.string(from: date)
         view.dueDateTextField.text = dueDate
+    }
+    
+    func setTaskViewTextColors(view: NewTaskView) {
+        let colorComponent = ColorComponents.init(systemName: project.color)
+        let color = colorComponent.uiColor
+        view.dueDateTextField.textColor = color
+        view.taskNameTextField.textColor = color
     }
 }
 
