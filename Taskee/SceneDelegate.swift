@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var coordinator: AppCoordinator!
+    lazy var coreDataStack = CoreDataStack(modelName: "Taskee")
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -19,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window!.makeKeyAndVisible()
         window!.windowScene = windowScene
         coordinator = AppCoordinator(window: window!)
+        coordinator.managedContext = coreDataStack.managedContext
         coordinator.start()
     }
 

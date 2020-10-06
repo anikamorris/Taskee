@@ -13,7 +13,6 @@ class CoreDataStack {
 
     private let modelName: String //create a private property to store the modelName
 
-    //we always need this
     lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
     }()

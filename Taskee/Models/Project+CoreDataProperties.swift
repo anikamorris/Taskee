@@ -18,7 +18,7 @@ extension Project {
 
     @NSManaged public var color: String
     @NSManaged public var name: String
-    @NSManaged public var tasks: NSMutableSet
+    @NSManaged public var tasks: NSOrderedSet?
 
 }
 

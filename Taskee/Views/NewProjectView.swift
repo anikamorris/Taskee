@@ -10,11 +10,16 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol SaveProjectDelegate {
+    func saveProject(title: String, color: UIColor)
+}
+
 class NewProjectView: UIView {
     
     //MARK: Properties
     let colors: [UIColor]
-    let parentVC: NewProjectController
+    var color: UIColor?
+    var saveProjectDelegate: SaveProjectDelegate!
     
     //MARK: Views
     let titleLabel: UILabel = {
@@ -51,9 +56,8 @@ class NewProjectView: UIView {
     }()
     
     //MARK: Init
-    init(frame: CGRect, colors: [UIColor], parentVC: NewProjectController) {
+    init(frame: CGRect, colors: [UIColor]) {
         self.colors = colors
-        self.parentVC = parentVC
         let firstStackView = ColorStackView.init(frame: .zero,
                                                 color1: colors[0],
                                                 color2: colors[1],
@@ -73,6 +77,7 @@ class NewProjectView: UIView {
         self.backgroundColor = .white
         setAllButtonTargets()
         setupViews()
+        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -138,7 +143,13 @@ class NewProjectView: UIView {
         removeAllButtonBorders()
         sender.layer.borderWidth = 2
         sender.layer.borderColor = CGColor(gray: 0, alpha: 1)
-        parentVC.color = sender.backgroundColor
+        color = sender.backgroundColor
+    }
+    
+    @objc func saveButtonTapped(_ sender: UIButton) {
+        guard let title = titleTextField.text else { return }
+        guard let color = color else { return }
+        saveProjectDelegate.saveProject(title: title, color: color)
     }
     
     fileprivate func removeAllButtonBorders() {

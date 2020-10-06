@@ -37,6 +37,16 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        let projectSearch: NSFetchRequest<Project> = Project.fetchRequest()
+        do {
+            let projects = try managedContext.fetch(projectSearch)
+            if projects.count > 0 {
+                self.projects = projects
+                print(projects)
+            }
+        } catch let error as NSError {
+            print("Error: \(error) description: \(error.localizedDescription)")
+        }
     }
     
     override func viewWillLayoutSubviews() {
